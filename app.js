@@ -44,10 +44,13 @@ document.getElementById("screen").innerHTML=
 
 <input id="minutes" placeholder="Минут">
 
+<button onclick="previewVideo()">Показать видео</button>
+
+<div id="preview"></div>
+
 <button onclick="saveWorkout()">Сохранить</button>
 
 <canvas id="chart"></canvas>
-
 `
 
 drawChart()
@@ -59,13 +62,30 @@ function saveWorkout(){
 let minutes=document.getElementById("minutes").value
 let url=document.getElementById("yt").value
 
-if(!minutes)return
+if(!minutes || minutes<=0){
+
+alert("Введите длительность тренировки")
+return
+
+}
 
 let workouts=JSON.parse(localStorage.getItem("workouts")||"{}")
+
+if(workouts[todayStr]){
+
+alert("Тренировка уже записана сегодня")
+return
+
+}
 
 workouts[todayStr]={minutes,url}
 
 localStorage.setItem("workouts",JSON.stringify(workouts))
+
+let streak=Number(localStorage.getItem("streak")||0)
+streak++
+
+localStorage.setItem("streak",streak)
 
 let points=Number(localStorage.getItem("points")||0)
 points+=minutes*3
@@ -146,5 +166,35 @@ datasets:[{label:"Талия",data:data}]
 }
 
 })
+
+}
+
+function getYoutubeThumbnail(url){
+
+let id=""
+
+if(url.includes("watch?v=")){
+
+id=url.split("watch?v=")[1]
+
+}else if(url.includes("youtu.be/")){
+
+id=url.split("youtu.be/")[1]
+
+}
+
+return "https://img.youtube.com/vi/"+id+"/hqdefault.jpg"
+
+}
+
+function previewVideo(){
+
+let url=document.getElementById("yt").value
+
+let thumb=getYoutubeThumbnail(url)
+
+document.getElementById("preview").innerHTML=
+
+`<img src="${thumb}" style="width:100%;border-radius:12px;margin-top:10px">`
 
 }

@@ -2,22 +2,36 @@ function aiCoach(){
 
 let streak=Number(localStorage.getItem("streak")||0)
 
-let waist=Number(localStorage.getItem("waist")||70)
+let workouts=JSON.parse(localStorage.getItem("workouts")||"{}")
 
-let text=""
+let count=Object.keys(workouts).length
 
-if(streak<3){
+let message=""
 
-text="Сегодня хорошая идея сделать 10 минут пилатеса."
+if(count==0){
+
+message="Начни с 10 минут пилатеса сегодня."
+
+}
+
+else if(streak<3){
+
+message="Попробуй тренироваться 3 дня подряд. Это поможет активировать мышцы кора."
+
+}
+
+else if(streak<7){
+
+message="Отличная дисциплина. Продолжай — талия может уменьшиться на 2-3 см за месяц."
 
 }
 
 else{
 
-text="Отличная дисциплина. Продолжай — талия может уменьшиться на 2-3 см за 6 недель."
+message="Ты уже в отличной форме. Добавь растяжку и дыхание для талии."
 
 }
 
-document.getElementById("aiCoach").innerText=text
+document.getElementById("aiCoach").innerText=message
 
 }
