@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Soft Discipline</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Soft Discipline</h1>
+
+<div id="login">
+
+<h2>Kira</h2>
+
+<input type="password" id="password" placeholder="Пароль">
+
+<button onclick="login()">Войти</button>
+
+</div>
+
+<div id="app">
+
+<div class="stats">
+
+<p id="streak"></p>
+
+<p id="points"></p>
+
+<p id="waist"></p>
+
+</div>
+
+<div class="menu">
+
+<button onclick="addWorkout()">Тренировка</button>
+
+<button onclick="addWaist()">Талия</button>
+
+<button onclick="glow()">Glow Up</button>
+
+<button onclick="diary()">Дневник</button>
+
+<button onclick="inspo()">INSPO</button>
+
+</div>
+
+<h3>AI мотивация</h3>
+
+<p id="motivation"></p>
+
+<canvas id="chart"></canvas>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+<script src="ai.js"></script>
+
+<script src="storage.js"></script>
+
+<script src="motivation.js"></script>
+
+</body>
+
+</html>
