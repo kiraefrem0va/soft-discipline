@@ -1,7 +1,6 @@
 const PASSWORD="1234"
 
 const today=new Date()
-
 const todayStr=today.toISOString().split("T")[0]
 
 function login(){
@@ -13,37 +12,52 @@ if(pass===PASSWORD){
 document.getElementById("login").style.display="none"
 document.getElementById("main").style.display="block"
 
-showDate()
-loadStats()
-drawChart()
-aiCoach()
+updateStats()
+screenHome()
 
 }
 
 }
 
-function showDate(){
+function updateStats(){
 
-document.getElementById("todayDate").innerText="Сегодня: "+today.toLocaleDateString()
-
-}
-
-function loadStats(){
+document.getElementById("today").innerText="Сегодня: "+today.toLocaleDateString()
 
 let streak=localStorage.getItem("streak")||0
 let points=localStorage.getItem("points")||0
 let waist=localStorage.getItem("waist")||"-"
 
-document.getElementById("streak").innerText="🔥 Streak: "+streak
-document.getElementById("points").innerText="⭐ Баллы: "+points
-document.getElementById("waist").innerText="Талия: "+waist+" см"
+document.getElementById("streak").innerText="🔥 "+streak
+document.getElementById("points").innerText="⭐ "+points
+document.getElementById("waist").innerText="Талия: "+waist
 
 }
 
-function addWorkout(){
+function screenHome(){
 
-let url=prompt("Вставь ссылку YouTube")
-let minutes=prompt("Сколько минут тренировка?")
+document.getElementById("screen").innerHTML=
+
+`
+<h3>Добавить тренировку</h3>
+
+<input id="yt" placeholder="YouTube ссылка">
+
+<input id="minutes" placeholder="Минут">
+
+<button onclick="saveWorkout()">Сохранить</button>
+
+<canvas id="chart"></canvas>
+
+`
+
+drawChart()
+
+}
+
+function saveWorkout(){
+
+let minutes=document.getElementById("minutes").value
+let url=document.getElementById("yt").value
 
 if(!minutes)return
 
@@ -53,61 +67,57 @@ workouts[todayStr]={minutes,url}
 
 localStorage.setItem("workouts",JSON.stringify(workouts))
 
-let streak=Number(localStorage.getItem("streak")||0)
-
-if(!workouts[todayStr]){
-
-streak++
-
-}
-
-localStorage.setItem("streak",streak)
-
 let points=Number(localStorage.getItem("points")||0)
-
 points+=minutes*3
 
 localStorage.setItem("points",points)
 
-loadStats()
+updateStats()
 
 }
 
-function openGlow(){
+function screenGlow(){
 
-document.getElementById("content").innerHTML=
+document.getElementById("screen").innerHTML=
 
 `
-
 <h3>Glow Up</h3>
 
-Сон (часы)<br>
-<input id="sleep"><br><br>
-
-Вода (стаканы)<br>
-<input id="water"><br><br>
-
-Шаги<br>
-<input id="steps"><br><br>
+<input id="sleep" placeholder="Сон (часы)">
+<input id="water" placeholder="Вода (стаканы)">
+<input id="steps" placeholder="Шаги">
 
 <button onclick="saveGlow()">Сохранить</button>
-
 `
 
 }
 
-function openDiary(){
+function saveGlow(){
 
-document.getElementById("content").innerHTML=
+let data={
+
+sleep:document.getElementById("sleep").value,
+water:document.getElementById("water").value,
+steps:document.getElementById("steps").value
+
+}
+
+localStorage.setItem("glow-"+todayStr,JSON.stringify(data))
+
+alert("Сохранено")
+
+}
+
+function screenDiary(){
+
+document.getElementById("screen").innerHTML=
 
 `
-
 <h3>Дневник</h3>
 
-<textarea id="diary" rows="6" style="width:100%"></textarea>
+<textarea id="diary"></textarea>
 
 <button onclick="saveDiary()">Сохранить</button>
-
 `
 
 }
@@ -131,11 +141,8 @@ new Chart(document.getElementById("chart"),{
 type:"line",
 
 data:{
-labels:data.map((_,i)=>"Запись "+(i+1)),
-datasets:[{
-label:"Талия",
-data:data
-}]
+labels:data.map((_,i)=>i+1),
+datasets:[{label:"Талия",data:data}]
 }
 
 })

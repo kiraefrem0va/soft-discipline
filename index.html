@@ -33,30 +33,24 @@
 
 <div class="card">
 
-<p id="todayDate"></p>
+<p id="today"></p>
 <p id="streak"></p>
 <p id="points"></p>
 <p id="waist"></p>
 
 </div>
 
-<div class="menu">
+<div id="screen"></div>
 
-<button onclick="addWorkout()">Тренировка</button>
-<button onclick="openCalendar()">Календарь</button>
-<button onclick="openGlow()">Glow Up</button>
-<button onclick="openDiary()">Дневник</button>
-<button onclick="openInspo()">Inspo</button>
+<div class="nav">
+
+<button onclick="screenHome()">Home</button>
+<button onclick="screenCalendar()">Calendar</button>
+<button onclick="screenGlow()">Glow</button>
+<button onclick="screenDiary()">Diary</button>
+<button onclick="screenInspo()">Inspo</button>
 
 </div>
-
-<div id="content"></div>
-
-<h3>AI тренер</h3>
-<p id="aiCoach"></p>
-
-<h3>Прогресс талии</h3>
-<canvas id="chart"></canvas>
 
 </div>
 
@@ -64,8 +58,8 @@
 
 <script src="app.js"></script>
 <script src="calendar.js"></script>
-<script src="ai.js"></script>
 <script src="inspo.js"></script>
+<script src="ai.js"></script>
 
 </body>
 

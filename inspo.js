@@ -1,18 +1,17 @@
-function openInspo(){
+function screenInspo(){
 
-document.getElementById("content").innerHTML=
+document.getElementById("screen").innerHTML=
 
 `
-
 <h3>Inspo</h3>
 
-<input type="file" id="imgInput">
+<input type="file" id="img">
 
 <div class="inspo-grid" id="gallery"></div>
 
 `
 
-document.getElementById("imgInput").addEventListener("change",function(){
+document.getElementById("img").addEventListener("change",function(){
 
 let file=this.files[0]
 
@@ -21,7 +20,6 @@ let reader=new FileReader()
 reader.onload=function(){
 
 let img=document.createElement("img")
-
 img.src=reader.result
 
 document.getElementById("gallery").appendChild(img)
