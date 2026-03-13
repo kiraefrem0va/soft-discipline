@@ -1,59 +1,106 @@
 body{
 
-font-family:Arial;
-
-background:#f7f1ea;
-
-color:#333;
-
-text-align:center;
+background:#f8f3ee;
+font-family:-apple-system,BlinkMacSystemFont;
+color:#4a4a4a;
+margin:0;
 
 }
 
-.container{
+.app{
 
 max-width:500px;
-
 margin:auto;
+padding:20px;
 
 }
 
 h1{
 
+text-align:center;
 color:#c9a27e;
+
+}
+
+.card{
+
+background:white;
+border-radius:20px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+
+}
+
+.menu{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:20px;
 
 }
 
 button{
 
-background:#e7c8b6;
-
 border:none;
-
-padding:12px;
-
-margin:5px;
-
-border-radius:12px;
-
-font-size:16px;
+background:#e8d2c4;
+padding:14px;
+border-radius:14px;
+font-size:15px;
 
 }
 
-.stats{
+button:hover{
+
+background:#e1c1af;
+
+}
+
+#content{
 
 background:white;
-
-padding:15px;
-
-border-radius:15px;
-
+border-radius:20px;
+padding:20px;
 margin-bottom:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
 
 }
 
-.menu button{
+.calendar{
 
-width:90%;
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px;
+
+}
+
+.day{
+
+padding:10px;
+background:#f4e9e3;
+border-radius:8px;
+font-size:12px;
+
+}
+
+.day.workout{
+
+background:#d9b8a5;
+
+}
+
+.inspo-grid{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+
+}
+
+.inspo-grid img{
+
+width:100%;
+border-radius:12px;
 
 }

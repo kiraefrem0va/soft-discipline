@@ -2,16 +2,22 @@ function aiCoach(){
 
 let streak=Number(localStorage.getItem("streak")||0)
 
-if(streak>3){
+let waist=Number(localStorage.getItem("waist")||70)
 
-return "Отличная дисциплина. Продолжай тренировки для узкой талии."
+let text=""
+
+if(streak<3){
+
+text="Сегодня хорошая идея сделать 10 минут пилатеса."
 
 }
 
 else{
 
-return "Попробуй сегодня сделать 10 минут пилатеса."
+text="Отличная дисциплина. Продолжай — талия может уменьшиться на 2-3 см за 6 недель."
 
 }
+
+document.getElementById("aiCoach").innerText=text
 
 }

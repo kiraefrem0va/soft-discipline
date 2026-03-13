@@ -4,11 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-
 <title>Soft Discipline</title>
 
 <link rel="stylesheet" href="style.css">
-
 <link rel="manifest" href="manifest.json">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -17,7 +15,7 @@
 
 <body>
 
-<div class="container">
+<div class="app">
 
 <h1>Soft Discipline</h1>
 
@@ -25,20 +23,19 @@
 
 <h2>Kira</h2>
 
-<input type="password" id="password" placeholder="Пароль">
+<input id="password" type="password" placeholder="Пароль">
 
 <button onclick="login()">Войти</button>
 
 </div>
 
-<div id="app">
+<div id="main">
 
-<div class="stats">
+<div class="card">
 
+<p id="todayDate"></p>
 <p id="streak"></p>
-
 <p id="points"></p>
-
 <p id="waist"></p>
 
 </div>
@@ -46,21 +43,19 @@
 <div class="menu">
 
 <button onclick="addWorkout()">Тренировка</button>
-
-<button onclick="addWaist()">Талия</button>
-
-<button onclick="glow()">Glow Up</button>
-
-<button onclick="diary()">Дневник</button>
-
-<button onclick="inspo()">INSPO</button>
+<button onclick="openCalendar()">Календарь</button>
+<button onclick="openGlow()">Glow Up</button>
+<button onclick="openDiary()">Дневник</button>
+<button onclick="openInspo()">Inspo</button>
 
 </div>
 
-<h3>AI мотивация</h3>
+<div id="content"></div>
 
-<p id="motivation"></p>
+<h3>AI тренер</h3>
+<p id="aiCoach"></p>
 
+<h3>Прогресс талии</h3>
 <canvas id="chart"></canvas>
 
 </div>
@@ -68,12 +63,9 @@
 </div>
 
 <script src="app.js"></script>
-
+<script src="calendar.js"></script>
 <script src="ai.js"></script>
-
-<script src="storage.js"></script>
-
-<script src="motivation.js"></script>
+<script src="inspo.js"></script>
 
 </body>
 
